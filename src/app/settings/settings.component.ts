@@ -347,6 +347,9 @@ export class SettingsComponent implements OnInit {
             alert("Le site a été enreigistrer avec success");
             //this.siteList = [this.site, ...this.siteList];
             this.cancel_site();
+            console.log(response)
+            //this.siteList.push(response as Site)
+            this.list_site()
           },
           error: (e) => {
             alert(e.error.message);
@@ -360,6 +363,7 @@ export class SettingsComponent implements OnInit {
               alert("Le site a été modifier avec success");
               //this.siteList = [this.site, ...this.siteList];
               this.cancel_site();
+              this.list_site()
             },
             error: (e) => {
               alert(e.error.message);
@@ -438,7 +442,8 @@ export class SettingsComponent implements OnInit {
           res.name
             .toLocaleLowerCase()
             .match(this.wh_search.toLocaleLowerCase()) ||
-          res.code.toLocaleLowerCase().match(this.wh_search.toLocaleLowerCase())
+          res.code.toLocaleLowerCase().match(this.wh_search.toLocaleLowerCase())||
+          res.site.name.toLocaleLowerCase().match(this.wh_search.toLocaleLowerCase())
         );
       });
     }
@@ -477,6 +482,7 @@ export class SettingsComponent implements OnInit {
             alert("L'entrepot a été enreigistrer avec success");
             //this.warehouseList = [this.warehouse, ...this.warehouseList];
             this.cancel_warehouse();
+            this.list_warehouse()
           },
           error: (e) => {
             alert(e.error.message);
@@ -490,6 +496,7 @@ export class SettingsComponent implements OnInit {
               alert("L'entrepot a été modifier avec success");
               //this.warehouseList = [this.warehouse, ...this.warehouseList];
               this.cancel_warehouse();
+              this.list_warehouse()
             },
             error: (e) => {
               alert(e.error.message);
@@ -574,6 +581,7 @@ export class SettingsComponent implements OnInit {
             //this.compagnyList = [this.compagny, ...this.compagnyList];
             //this.compagny_form.reset()
             this.cancel_compagny();
+            this.list_compagny()
           },
           error: (e) => {
             alert(e.error.message);
@@ -590,6 +598,7 @@ export class SettingsComponent implements OnInit {
               // this.compagny_form.reset();
               // console.log(this.compagny_form.value)
               this.cancel_compagny();
+              this.list_compagny()
             },
             error: (e) => {
               alert(e.error.message);
@@ -676,6 +685,7 @@ export class SettingsComponent implements OnInit {
             alert("La categorie a été enreigistrer avec success");
             //this.categoryList = [this.category, ...this.categoryList];
             this.cancel_category();
+            this.list_category()
           },
           error: (e) => {
             alert(e.error.message);
@@ -689,6 +699,7 @@ export class SettingsComponent implements OnInit {
               alert("La categorie a été modifie avec success");
               //this.categoryList = [this.category, ...this.categoryList];
               this.cancel_category();
+              this.list_category()
             },
             error: (e) => {
               alert(e.error.message);
@@ -774,6 +785,7 @@ export class SettingsComponent implements OnInit {
             alert("L'emplacement a été enreigistrer avec success");
             // this.locationList = [this.location, ...this.locationList];
             this.cancel_location();
+            this.list_location()
           },
           error: (e) => {
             alert(e.error.message);
@@ -787,6 +799,7 @@ export class SettingsComponent implements OnInit {
               alert("L'emplacement a été modifier avec success");
               //this.locationList = [this.location, ...this.locationList];
               this.cancel_location();
+              this.list_location()
             },
             error: (e) => {
               alert(e.error.message);
@@ -893,6 +906,7 @@ export class SettingsComponent implements OnInit {
             alert("Le forunisseur a été enreigistrer avec success");
             // this.providerList = [this.provider, ...this.providerList];
             this.cancel_provider();
+            this.list_provider()
           },
           error: (e) => {
             alert(e.error.message);
@@ -906,6 +920,7 @@ export class SettingsComponent implements OnInit {
               alert("Le forunisseur a été modifier avec success");
               // this.providerList = [this.provider, ...this.providerList];
               this.cancel_provider();
+              this.list_provider()
             },
             error: (e) => {
               alert(e.error.message);
@@ -991,6 +1006,7 @@ export class SettingsComponent implements OnInit {
             alert("L'imputation a été enreigistrer avec success");
             //this.coastcenterList = [this.coastcenter, ...this.coastcenterList];
             this.cancel_coastcenter();
+            this.list_coastcenter()
           },
           error: (e) => {
             alert(e.error.message);
@@ -1005,6 +1021,7 @@ export class SettingsComponent implements OnInit {
               next: (response) => {
                 alert("L'imputation a été modifiée avec success");
                 this.cancel_coastcenter();
+                this.list_coastcenter()
               },
               error: (e) => {
                 alert(e.error.message);
@@ -1164,6 +1181,7 @@ export class SettingsComponent implements OnInit {
             alert("Le produit a été enreigistrer avec success");
             //this.productList = [this.product, ...this.productList];
             this.cancel_product();
+            this.list_product()
           },
           error: (e) => {
             alert(e.error.message);
@@ -1177,6 +1195,7 @@ export class SettingsComponent implements OnInit {
               alert("Le produit a été modifier avec success");
               //this.productList = [this.product, ...this.productList];
               this.cancel_product();
+              this.list_product()
             },
             error: (e) => {
               alert(e.error.message);

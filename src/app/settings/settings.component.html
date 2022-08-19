@@ -24,6 +24,7 @@
                 data-toggle="modal"
                 data-toggle="modal"
                 data-target="#siteModal"
+                (click)="list_site()"
               >
                 <div
                   class="float-right icon-circle-medium icon-box-lg bg-info-light mt-1"
@@ -51,6 +52,7 @@
                 data-toggle="modal"
                 data-toggle="modal"
                 data-target="#warehouseModal"
+                (click)="list_warehouse()"
               >
                 <div
                   class="float-right icon-circle-medium icon-box-lg bg-info-light mt-1"
@@ -78,6 +80,7 @@
                 data-toggle="modal"
                 data-toggle="modal"
                 data-target="#compagnyModal"
+                (click)="list_compagny()"
               >
                 <div
                   class="float-right icon-circle-medium icon-box-lg bg-info-light mt-1"
@@ -90,7 +93,7 @@
         </div>
       </div>
       <!-- ============================================================== -->
-      <!-- Compagnie -->
+      <!-- Category -->
       <!-- ============================================================== -->
       <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
         <div class="border-3 border-top border-top-primary">
@@ -105,6 +108,7 @@
                 data-toggle="modal"
                 data-toggle="modal"
                 data-target="#categoryModal"
+                (click)="list_category()"
               >
                 <div
                   class="float-right icon-circle-medium icon-box-lg bg-info-light mt-1"
@@ -132,6 +136,7 @@
                 data-toggle="modal"
                 data-toggle="modal"
                 data-target="#locationModal"
+                (click)="list_location()"
               >
                 <div
                   class="float-right icon-circle-medium icon-box-lg bg-info-light mt-1"
@@ -159,6 +164,7 @@
                 data-toggle="modal"
                 data-toggle="modal"
                 data-target="#providerModal"
+                (click)="list_provider()"
               >
                 <div
                   class="float-right icon-circle-medium icon-box-lg bg-info-light mt-1"
@@ -186,6 +192,7 @@
                 data-toggle="modal"
                 data-toggle="modal"
                 data-target="#coastcenterModal"
+                (click)="list_coastcenter()"
               >
                 <div
                   class="float-right icon-circle-medium icon-box-lg bg-info-light mt-1"
@@ -213,6 +220,7 @@
                 data-toggle="modal"
                 data-toggle="modal"
                 data-target="#productModal"
+                (click)="list_product()"
               >
                 <div
                   class="float-right icon-circle-medium icon-box-lg bg-info-light mt-1"
@@ -253,76 +261,80 @@
         </button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="site_form">
-          <div class="form-row">
-            <div class="form-group mx-sm-3 mb-2">
-              <label for="site_code" class="">Code</label>
-              <input
-                type="texte"
-                class="form-control"
-                id="site_code"
-                name="site_code"
-                formControlName="code"
-                [(ngModel)]="site.code"
-                (ngModelChange)="site_change_input()"
-                required
-              />
-              <input
-                type="hidden"
-                class="form-control"
-                formControlName="oid"
-                required
-              />
-              <span
-                *ngIf="code_site.invalid && code_site.touched"
-                style="color: red"
-                >champ obligatoire</span
-              >
-            </div>
-            <div class="form-group mx-sm-3 mb-2">
-              <label for="site_name" class="">Nom</label>
-              <input
-                type="texte"
-                class="form-control"
-                id="site_name"
-                name="site_name"
-                formControlName="name"
-                [(ngModel)]="site.name"
-                (ngModelChange)="site_change_input()"
-                required
-              />
-              <span
-                *ngIf="name_site.invalid && name_site.touched"
-                style="color: red"
-                >champ obligatoire</span
-              >
-            </div>
-            <div class="row" id="div_btn">
-              <div class="form-group mx-sm-3 mb-2">
-                <button
-                  type="submit"
-                  class="btn btn-primary form-contro"
-                  id="btn_add_site"
-                  [disabled]="btn_state"
-                  (click)="add_site()"
-                >
-                  Enreigistrer
-                </button>
+        <div class="card">
+          <div class="card-body">
+            <form [formGroup]="site_form">
+              <div class="form-row">
+                <div class="form-group mx-sm-3 mb-2">
+                  <label for="site_code" class="">Code</label>
+                  <input
+                    type="texte"
+                    class="form-control"
+                    id="site_code"
+                    name="site_code"
+                    formControlName="code"
+                    [(ngModel)]="site.code"
+                    (ngModelChange)="site_change_input()"
+                    required
+                  />
+                  <input
+                    type="hidden"
+                    class="form-control"
+                    formControlName="oid"
+                    required
+                  />
+                  <span
+                    *ngIf="code_site.invalid && code_site.touched"
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+                <div class="form-group mx-sm-3 mb-2">
+                  <label for="site_name" class="">Nom</label>
+                  <input
+                    type="texte"
+                    class="form-control"
+                    id="site_name"
+                    name="site_name"
+                    formControlName="name"
+                    [(ngModel)]="site.name"
+                    (ngModelChange)="site_change_input()"
+                    required
+                  />
+                  <span
+                    *ngIf="name_site.invalid && name_site.touched"
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+                <div class="row" id="div_btn">
+                  <div class="form-group mx-sm-3 mb-2">
+                    <button
+                      type="submit"
+                      class="btn btn-primary form-contro"
+                      id="btn_add_site"
+                      [disabled]="btn_state"
+                      (click)="add_site()"
+                    >
+                      Enreigistrer
+                    </button>
+                  </div>
+                  <div class="form-group mx-sm-3 mb-2">
+                    <button
+                      type="button"
+                      class="btn btn-warning form-contro"
+                      id="btn_add_site"
+                      [disabled]="btn_state"
+                      (click)="cancel_site()"
+                    >
+                      Annuler
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div class="form-group mx-sm-3 mb-2">
-                <button
-                  type="button"
-                  class="btn btn-warning form-contro"
-                  id="btn_add_site"
-                  [disabled]="btn_state"
-                  (click)="cancel_site()"
-                >
-                  Annuler
-                </button>
-              </div>
-            </div>
+            </form>
           </div>
-        </form>
+        </div>
         <div class="">
           <div class="card">
             <div class="card-body">
@@ -358,7 +370,12 @@
                     *ngFor="
                       let s of siteList
                         | orderBy: key:reverse
-                        | paginate: { itemsPerPage: 5, currentPage: p_site, totalItems:siteList.length };
+                        | paginate
+                          : {
+                              itemsPerPage: 5,
+                              currentPage: p_site,
+                              totalItems: siteList.length
+                            };
                       let i = index
                     "
                     (click)="ClickedRowSite(s)"
@@ -419,96 +436,100 @@
         </button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="wh_form">
-          <div class="form-row">
-            <div class="form-group mx-sm-3 mb-2">
-              <label for="warehouse_code" class="">Code</label>
-              <input
-                type="texte"
-                class="form-control"
-                id="warehouse_code"
-                name="warehouse_code"
-                formControlName="code"
-                [(ngModel)]="warehouse.code"
-                (ngModelChange)="warehouse_change_input()"
-                required
-              />
-              <input
-              type="hidden"
-              class="form-control"
-              formControlName="oid"
-              required
-            />
-              <span
-                *ngIf="code_wh.invalid && code_wh.touched"
-                style="color: red"
-                >champ obligatoire</span
-              >
-            </div>
-            <div class="form-group mx-sm-3 mb-2">
-              <label for="warehouse_name" class="">Nom</label>
-              <input
-                type="texte"
-                class="form-control"
-                id="warehouse_name"
-                name="warehouse_name"
-                formControlName="name"
-                [(ngModel)]="warehouse.name"
-                (ngModelChange)="warehouse_change_input()"
-                required
-              />
-              <span
-                *ngIf="name_wh.invalid && name_wh.touched"
-                style="color: red"
-                >champ obligatoire</span
-              >
-            </div>
-            <div class="form-group mx-sm-3 mb-2">
-              <label for="warehouse_name" class="">Site</label>
-              <select
-                class="custom-select mr-sm-2"
-                id="inlineFormCustomSelect"
-                [(ngModel)]="warehouse.site"
-                formControlName="site"
-                (ngModelChange)="warehouse_change_input()"
-                required
-              >
-                <option class="" disabled selected value="undefined">
-                  Choix du site
-                </option>
-                <option
-                  *ngFor="let siteElt of siteList"
-                  [value]="siteElt.oid"
-                >
-                  {{ siteElt.name }}
-                </option>
-              </select>
-            </div>
-           <!--- {{warehouse.site | json}}--->
-            <div class="row" id="div_btn">
-              <div class="form-group mx-sm-3 mb-2">
-                <button
-                  type="submit"
-                  class="btn btn-primary form-contro"
-                  (click)="add_warehouse()"
-                  [disabled]="btn_state_wh || warehouse.site == undefined"
-                >
-                  Enrigistrer
-                </button>
+        <div class="card">
+          <div class="card-body">
+            <form [formGroup]="wh_form">
+              <div class="form-row">
+                <div class="form-group mx-sm-3 mb-2">
+                  <label for="warehouse_code" class="">Code</label>
+                  <input
+                    type="texte"
+                    class="form-control"
+                    id="warehouse_code"
+                    name="warehouse_code"
+                    formControlName="code"
+                    [(ngModel)]="warehouse.code"
+                    (ngModelChange)="warehouse_change_input()"
+                    required
+                  />
+                  <input
+                    type="hidden"
+                    class="form-control"
+                    formControlName="oid"
+                    required
+                  />
+                  <span
+                    *ngIf="code_wh.invalid && code_wh.touched"
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+                <div class="form-group mx-sm-3 mb-2">
+                  <label for="warehouse_name" class="">Nom</label>
+                  <input
+                    type="texte"
+                    class="form-control"
+                    id="warehouse_name"
+                    name="warehouse_name"
+                    formControlName="name"
+                    [(ngModel)]="warehouse.name"
+                    (ngModelChange)="warehouse_change_input()"
+                    required
+                  />
+                  <span
+                    *ngIf="name_wh.invalid && name_wh.touched"
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+                <div class="form-group mx-sm-3 mb-2">
+                  <label for="warehouse_name" class="">Site</label>
+                  <select
+                    class="custom-select mr-sm-2"
+                    id="inlineFormCustomSelect"
+                    [(ngModel)]="warehouse.site"
+                    formControlName="site"
+                    (ngModelChange)="warehouse_change_input()"
+                    required
+                  >
+                    <option class="" disabled selected value="undefined">
+                      Choix du site
+                    </option>
+                    <option
+                      *ngFor="let siteElt of siteList"
+                      [value]="siteElt.oid"
+                    >
+                      {{ siteElt.name }}
+                    </option>
+                  </select>
+                </div>
+                <!--- {{warehouse.site | json}}--->
+                <div class="row" id="div_btn">
+                  <div class="form-group mx-sm-3 mb-2">
+                    <button
+                      type="submit"
+                      class="btn btn-primary form-contro"
+                      (click)="add_warehouse()"
+                      [disabled]="btn_state_wh || warehouse.site == undefined"
+                    >
+                      Enrigistrer
+                    </button>
+                  </div>
+                  <div class="form-group mx-sm-3 mb-2">
+                    <button
+                      type="button"
+                      class="btn btn-warning form-contro"
+                      (click)="cancel_warehouse()"
+                      [disabled]="btn_state_wh || warehouse.site == undefined"
+                    >
+                      Annuler
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div class="form-group mx-sm-3 mb-2">
-                <button
-                  type="button"
-                  class="btn btn-warning form-contro"
-                  (click)="cancel_warehouse()"
-                  [disabled]="btn_state_wh || warehouse.site == undefined"
-                >
-                  Annuler
-                </button>
-              </div>
-            </div>
+            </form>
           </div>
-        </form>
+        </div>
         <div class="">
           <div class="card">
             <div class="card-body">
@@ -605,74 +626,78 @@
         </button>
       </div>
       <div class="modal-body">
-        <form
-          [formGroup]="compagny_form"
-          (ngSubmit)="add_compagny(compagny_form.value)"
-        >
-          <div class="form-row">
-            <div class="form-group mx-sm-3 mb-2">
-              <label for="site_code" class="">Code</label>
-              <input
-                type="texte"
-                class="form-control"
-                formControlName="code"
-                [(ngModel)]="compagny.code"
-                (ngModelChange)="compagny_change_input()"
-                required
-              />
-              <input
-                type="hidden"
-                class="form-control"
-                formControlName="oid"
-                required
-              />
-              <span
-                *ngIf="code_compagny.invalid && code_compagny.touched"
-                style="color: red"
-                >champ obligatoire</span
-              >
-            </div>
-            <div class="form-group mx-sm-3 mb-2">
-              <label for="site_name" class="">Nom</label>
-              <input
-                type="texte"
-                class="form-control"
-                formControlName="name"
-                [(ngModel)]="compagny.name"
-                (ngModelChange)="compagny_change_input()"
-                required
-              />
-              <span
-                *ngIf="name_compagny.invalid && name_compagny.touched"
-                style="color: red"
-                >champ obligatoire</span
-              >
-            </div>
-            <div class="row" id="div_btn">
-              <div class="form-group mx-sm-3 mb-2">
-                <button
-                  type="submit"
-                  class="btn btn-primary form-contro"
-                  id="btn_add_site"
-                  [disabled]="btn_state_compagny"
-                >
-                  Enreigistrer
-                </button>
+        <div class="card">
+          <div class="card-body">
+            <form
+              [formGroup]="compagny_form"
+              (ngSubmit)="add_compagny(compagny_form.value)"
+            >
+              <div class="form-row">
+                <div class="form-group mx-sm-3 mb-2">
+                  <label for="site_code" class="">Code</label>
+                  <input
+                    type="texte"
+                    class="form-control"
+                    formControlName="code"
+                    [(ngModel)]="compagny.code"
+                    (ngModelChange)="compagny_change_input()"
+                    required
+                  />
+                  <input
+                    type="hidden"
+                    class="form-control"
+                    formControlName="oid"
+                    required
+                  />
+                  <span
+                    *ngIf="code_compagny.invalid && code_compagny.touched"
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+                <div class="form-group mx-sm-3 mb-2">
+                  <label for="site_name" class="">Nom</label>
+                  <input
+                    type="texte"
+                    class="form-control"
+                    formControlName="name"
+                    [(ngModel)]="compagny.name"
+                    (ngModelChange)="compagny_change_input()"
+                    required
+                  />
+                  <span
+                    *ngIf="name_compagny.invalid && name_compagny.touched"
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+                <div class="row" id="div_btn">
+                  <div class="form-group mx-sm-3 mb-2">
+                    <button
+                      type="submit"
+                      class="btn btn-primary form-contro"
+                      id="btn_add_site"
+                      [disabled]="btn_state_compagny"
+                    >
+                      Enreigistrer
+                    </button>
+                  </div>
+                  <div class="form-group mx-sm-3 mb-2">
+                    <button
+                      type="button"
+                      class="btn btn-warning form-contro"
+                      id="btn_add_site"
+                      [disabled]="btn_state_compagny"
+                      (click)="cancel_compagny()"
+                    >
+                      Annuler
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div class="form-group mx-sm-3 mb-2">
-                <button
-                  type="button"
-                  class="btn btn-warning form-contro"
-                  id="btn_add_site"
-                  [disabled]="btn_state_compagny"
-                  (click)="cancel_compagny()"
-                >
-                  Annuler
-                </button>
-              </div>
-            </div>
+            </form>
           </div>
-        </form>
+        </div>
 
         <div class="">
           <div class="card">
@@ -771,76 +796,80 @@
         </button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="category_form">
-          <div class="form-row">
-            <div class="form-group mx-sm-3 mb-2">
-              <label for="site_code" class="">Code</label>
-              <input
-                type="texte"
-                class="form-control"
-                id="site_code"
-                name="site_code"
-                formControlName="code"
-                [(ngModel)]="category.code"
-                (ngModelChange)="category_change_input()"
-                required
-              />
-              <span
-                *ngIf="code_category.invalid && code_category.touched"
-                style="color: red"
-                >champ obligatoire</span
-              >
-              <input
-                type="hidden"
-                class="form-control"
-                formControlName="oid"
-                required
-              />
-            </div>
-            <div class="form-group mx-sm-3 mb-2">
-              <label for="site_name" class="">Nom</label>
-              <input
-                type="texte"
-                class="form-control"
-                id="site_name"
-                name="site_name"
-                formControlName="name"
-                [(ngModel)]="category.name"
-                (ngModelChange)="category_change_input()"
-                required
-              />
-              <span
-                *ngIf="name_category.invalid && name_category.touched"
-                style="color: red"
-                >champ obligatoire</span
-              >
-            </div>
-            <div class="row" id="div_btn">
-              <div class="form-group mx-sm-3 mb-2">
-                <button
-                  type="submit"
-                  class="btn btn-primary form-contro"
-                  id="btn_add_site"
-                  [disabled]="btn_state_cat"
-                  (click)="add_category()"
-                >
-                  Ajouter
-                </button>
+        <div class="card">
+          <div class="card-body">
+            <form [formGroup]="category_form">
+              <div class="form-row">
+                <div class="form-group mx-sm-3 mb-2">
+                  <label for="site_code" class="">Code</label>
+                  <input
+                    type="texte"
+                    class="form-control"
+                    id="site_code"
+                    name="site_code"
+                    formControlName="code"
+                    [(ngModel)]="category.code"
+                    (ngModelChange)="category_change_input()"
+                    required
+                  />
+                  <span
+                    *ngIf="code_category.invalid && code_category.touched"
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                  <input
+                    type="hidden"
+                    class="form-control"
+                    formControlName="oid"
+                    required
+                  />
+                </div>
+                <div class="form-group mx-sm-3 mb-2">
+                  <label for="site_name" class="">Nom</label>
+                  <input
+                    type="texte"
+                    class="form-control"
+                    id="site_name"
+                    name="site_name"
+                    formControlName="name"
+                    [(ngModel)]="category.name"
+                    (ngModelChange)="category_change_input()"
+                    required
+                  />
+                  <span
+                    *ngIf="name_category.invalid && name_category.touched"
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+                <div class="row" id="div_btn">
+                  <div class="form-group mx-sm-3 mb-2">
+                    <button
+                      type="submit"
+                      class="btn btn-primary form-contro"
+                      id="btn_add_site"
+                      [disabled]="btn_state_cat"
+                      (click)="add_category()"
+                    >
+                      Ajouter
+                    </button>
+                  </div>
+                  <div class="form-group mx-sm-3 mb-2">
+                    <button
+                      type="button"
+                      class="btn btn-warning form-contro"
+                      id="btn_update_site"
+                      [disabled]="btn_state_cat"
+                      (click)="cancel_category()"
+                    >
+                      Annuler
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div class="form-group mx-sm-3 mb-2">
-                <button
-                  type="button"
-                  class="btn btn-warning form-contro"
-                  id="btn_update_site"
-                  [disabled]="btn_state_cat"
-                  (click)="cancel_category()"
-                >
-                  Annuler
-                </button>
-              </div>
-            </div>
+            </form>
           </div>
-        </form>
+        </div>
         <div class="">
           <div class="card">
             <div class="card-body">
@@ -936,76 +965,80 @@
         </button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="location_form">
-          <div class="form-row">
-            <div class="form-group mx-sm-3 mb-2">
-              <label for="site_code" class="">Code</label>
-              <input
-                type="texte"
-                class="form-control"
-                id="site_code"
-                name="site_code"
-                formControlName="code"
-                [(ngModel)]="location.code"
-                (ngModelChange)="location_change_input()"
-                required
-              />
-              <input
-                type="hidden"
-                class="form-control"
-                formControlName="oid"
-                required
-              />
-              <span
-                *ngIf="code_location.invalid && code_location.touched"
-                style="color: red"
-                >champ obligatoire</span
-              >
-            </div>
-            <div class="form-group mx-sm-3 mb-2">
-              <label for="site_name" class="">Nom</label>
-              <input
-                type="texte"
-                class="form-control"
-                id="site_name"
-                name="site_name"
-                formControlName="name"
-                [(ngModel)]="location.name"
-                (ngModelChange)="location_change_input()"
-                required
-              />
-              <span
-                *ngIf="name_location.invalid && name_location.touched"
-                style="color: red"
-                >champ obligatoire</span
-              >
-            </div>
-            <div class="row" id="div_btn">
-              <div class="form-group mx-sm-3 mb-2">
-                <button
-                  type="submit"
-                  class="btn btn-primary form-contro"
-                  id="btn_add_site"
-                  [disabled]="btn_state_location"
-                  (click)="add_location()"
-                >
-                  Ajouter
-                </button>
+        <div class="card">
+          <div class="card-body">
+            <form [formGroup]="location_form">
+              <div class="form-row">
+                <div class="form-group mx-sm-3 mb-2">
+                  <label for="site_code" class="">Code</label>
+                  <input
+                    type="texte"
+                    class="form-control"
+                    id="site_code"
+                    name="site_code"
+                    formControlName="code"
+                    [(ngModel)]="location.code"
+                    (ngModelChange)="location_change_input()"
+                    required
+                  />
+                  <input
+                    type="hidden"
+                    class="form-control"
+                    formControlName="oid"
+                    required
+                  />
+                  <span
+                    *ngIf="code_location.invalid && code_location.touched"
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+                <div class="form-group mx-sm-3 mb-2">
+                  <label for="site_name" class="">Nom</label>
+                  <input
+                    type="texte"
+                    class="form-control"
+                    id="site_name"
+                    name="site_name"
+                    formControlName="name"
+                    [(ngModel)]="location.name"
+                    (ngModelChange)="location_change_input()"
+                    required
+                  />
+                  <span
+                    *ngIf="name_location.invalid && name_location.touched"
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+                <div class="row" id="div_btn">
+                  <div class="form-group mx-sm-3 mb-2">
+                    <button
+                      type="submit"
+                      class="btn btn-primary form-contro"
+                      id="btn_add_site"
+                      [disabled]="btn_state_location"
+                      (click)="add_location()"
+                    >
+                      Ajouter
+                    </button>
+                  </div>
+                  <div class="form-group mx-sm-3 mb-2">
+                    <button
+                      type="button"
+                      class="btn btn-warning form-contro"
+                      id="btn_update_site"
+                      [disabled]="btn_state_location"
+                      (click)="cancel_location()"
+                    >
+                      Annuler
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div class="form-group mx-sm-3 mb-2">
-                <button
-                  type="button"
-                  class="btn btn-warning form-contro"
-                  id="btn_update_site"
-                  [disabled]="btn_state_location"
-                  (click)="cancel_location()"
-                >
-                  Annuler
-                </button>
-              </div>
-            </div>
+            </form>
           </div>
-        </form>
+        </div>
         <div class="">
           <div class="card">
             <div class="card-body">
@@ -1102,186 +1135,191 @@
         </button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="provider_form">
-          <div class="form-row">
-            <div class="form-group mx-sm-3 mb-2">
-              <label for="site_code" class="">Code</label>
-              <input
-                type="texte"
-                class="form-control"
-                id="site_code"
-                name="site_code"
-                formControlName="code"
-                [(ngModel)]="provider.code"
-                (ngModelChange)="provider_change_input()"
-                required
-              />
-              <input
-              type="hidden"
-              class="form-control"
-              formControlName="oid"
-              required
-            />
-              <span
-                *ngIf="code_provider.invalid && code_provider.touched"
-                style="color: red"
-                >champ obligatoire</span
-              >
-            </div>
-            <div class="form-group mx-sm-3 mb-2">
-              <label for="site_name" class="">Nom</label>
-              <input
-                type="texte"
-                class="form-control"
-                id="site_name"
-                name="site_name"
-                formControlName="name"
-                [(ngModel)]="provider.name"
-                (ngModelChange)="provider_change_input()"
-                required
-              />
-              <span
-                *ngIf="name_provider.invalid && name_provider.touched"
-                style="color: red"
-                >champ obligatoire</span
-              >
-            </div>
-            <div class="form-group mx-sm-3 mb-2">
-              <label for="site_name" class="">Compagnie</label>
-              <input
-                type="texte"
-                class="form-control"
-                id="site_name"
-                name="site_name"
-                formControlName="company"
-                [(ngModel)]="provider.company"
-                (ngModelChange)="provider_change_input()"
-                required
-              />
-              <span
-                *ngIf="company_provider.invalid && company_provider.touched"
-                style="color: red"
-                >champ obligatoire</span
-              >
-            </div>
-            <div class="form-group mx-sm-3 mb-2">
-              <label for="site_name" class="">Adresse</label>
-              <input
-                type="texte"
-                class="form-control"
-                id="site_name"
-                name="site_name"
-                formControlName="adress"
-                [(ngModel)]="provider.adress"
-                (ngModelChange)="provider_change_input()"
-                required
-              />
-              <span
-                *ngIf="adress_provider.invalid && adress_provider.touched"
-                style="color: red"
-                >champ obligatoire</span
-              >
-            </div>
-            <div class="form-group mx-sm-3 mb-2">
-              <label for="site_name" class="">Telephone</label>
-              <input
-                type="texte"
-                class="form-control"
-                id="site_name"
-                name="site_name"
-                formControlName="phone"
-                [(ngModel)]="provider.phone"
-                (ngModelChange)="provider_change_input()"
-                required
-              />
-              <span
-                *ngIf="phone_provider.invalid && phone_provider.touched"
-                style="color: red"
-                >champ obligatoire</span
-              >
-            </div>
-            <div class="form-group mx-sm-3 mb-2">
-              <label for="site_name" class="">Adresse email</label>
-              <input
-                type="texte"
-                class="form-control"
-                id="site_name"
-                name="site_name"
-                formControlName="email"
-                [(ngModel)]="provider.email"
-                (ngModelChange)="provider_change_input()"
-                required
-              />
-              <span
-                *ngIf="email_provider.invalid && email_provider.touched"
-                style="color: red"
-                >champ obligatoire</span
-              >
-            </div>
-            <div class="form-group mx-sm-3 mb-2">
-              <label for="site_name" class="">Ville</label>
-              <input
-                type="texte"
-                class="form-control"
-                id="site_name"
-                name="site_name"
-                formControlName="town"
-                [(ngModel)]="provider.town"
-                (ngModelChange)="provider_change_input()"
-                required
-              />
-              <span
-                *ngIf="town_provider.invalid && town_provider.touched"
-                style="color: red"
-                >champ obligatoire</span
-              >
-            </div>
-            <div class="form-group mx-sm-3 mb-2">
-              <label for="site_name" class="">Observation</label>
-              <input
-                type="texte"
-                class="form-control"
-                id="site_name"
-                name="site_name"
-                formControlName="observation"
-                [(ngModel)]="provider.observation"
-                (ngModelChange)="provider_change_input()"
-                required
-              />
-              <span
-                *ngIf="
-                  observation_provider.invalid && observation_provider.touched
-                "
-                style="color: red"
-                >champ obligatoire</span
-              >
-            </div>
-            <div class="row" id="div_btn">
-              <div class="form-group mx-sm-3 mb-2">
-                <button
-                  type="submit"
-                  class="btn btn-primary form-contro"
-                  id="btn_add_site"
-                  [disabled]="btn_state_provider"
-                  (click)="add_provider()"
-                >
-                  Ajouter
-                </button>
+        <div class="card">
+          <div class="card-body">
+            <form [formGroup]="provider_form">
+              <div class="form-row">
+                <div class="form-group mx-sm-3 mb-2">
+                  <label for="site_code" class="">Code</label>
+                  <input
+                    type="texte"
+                    class="form-control"
+                    id="site_code"
+                    name="site_code"
+                    formControlName="code"
+                    [(ngModel)]="provider.code"
+                    (ngModelChange)="provider_change_input()"
+                    required
+                  />
+                  <input
+                    type="hidden"
+                    class="form-control"
+                    formControlName="oid"
+                    required
+                  />
+                  <span
+                    *ngIf="code_provider.invalid && code_provider.touched"
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+                <div class="form-group mx-sm-3 mb-2">
+                  <label for="site_name" class="">Nom</label>
+                  <input
+                    type="texte"
+                    class="form-control"
+                    id="site_name"
+                    name="site_name"
+                    formControlName="name"
+                    [(ngModel)]="provider.name"
+                    (ngModelChange)="provider_change_input()"
+                    required
+                  />
+                  <span
+                    *ngIf="name_provider.invalid && name_provider.touched"
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+                <div class="form-group mx-sm-3 mb-2">
+                  <label for="site_name" class="">Compagnie</label>
+                  <input
+                    type="texte"
+                    class="form-control"
+                    id="site_name"
+                    name="site_name"
+                    formControlName="company"
+                    [(ngModel)]="provider.company"
+                    (ngModelChange)="provider_change_input()"
+                    required
+                  />
+                  <span
+                    *ngIf="company_provider.invalid && company_provider.touched"
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+                <div class="form-group mx-sm-3 mb-2">
+                  <label for="site_name" class="">Adresse</label>
+                  <input
+                    type="texte"
+                    class="form-control"
+                    id="site_name"
+                    name="site_name"
+                    formControlName="adress"
+                    [(ngModel)]="provider.adress"
+                    (ngModelChange)="provider_change_input()"
+                    required
+                  />
+                  <span
+                    *ngIf="adress_provider.invalid && adress_provider.touched"
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+                <div class="form-group mx-sm-3 mb-2">
+                  <label for="site_name" class="">Telephone</label>
+                  <input
+                    type="texte"
+                    class="form-control"
+                    id="site_name"
+                    name="site_name"
+                    formControlName="phone"
+                    [(ngModel)]="provider.phone"
+                    (ngModelChange)="provider_change_input()"
+                    required
+                  />
+                  <span
+                    *ngIf="phone_provider.invalid && phone_provider.touched"
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+                <div class="form-group mx-sm-3 mb-2">
+                  <label for="site_name" class="">Adresse email</label>
+                  <input
+                    type="texte"
+                    class="form-control"
+                    id="site_name"
+                    name="site_name"
+                    formControlName="email"
+                    [(ngModel)]="provider.email"
+                    (ngModelChange)="provider_change_input()"
+                    required
+                  />
+                  <span
+                    *ngIf="email_provider.invalid && email_provider.touched"
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+                <div class="form-group mx-sm-3 mb-2">
+                  <label for="site_name" class="">Ville</label>
+                  <input
+                    type="texte"
+                    class="form-control"
+                    id="site_name"
+                    name="site_name"
+                    formControlName="town"
+                    [(ngModel)]="provider.town"
+                    (ngModelChange)="provider_change_input()"
+                    required
+                  />
+                  <span
+                    *ngIf="town_provider.invalid && town_provider.touched"
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+                <div class="form-group mx-sm-3 mb-2">
+                  <label for="site_name" class="">Observation</label>
+                  <input
+                    type="texte"
+                    class="form-control"
+                    id="site_name"
+                    name="site_name"
+                    formControlName="observation"
+                    [(ngModel)]="provider.observation"
+                    (ngModelChange)="provider_change_input()"
+                    required
+                  />
+                  <span
+                    *ngIf="
+                      observation_provider.invalid &&
+                      observation_provider.touched
+                    "
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+                <div class="row" id="div_btn">
+                  <div class="form-group mx-sm-3 mb-2">
+                    <button
+                      type="submit"
+                      class="btn btn-primary form-contro"
+                      id="btn_add_site"
+                      [disabled]="btn_state_provider"
+                      (click)="add_provider()"
+                    >
+                      Ajouter
+                    </button>
+                  </div>
+                  <div class="form-group mx-sm-3 mb-2">
+                    <button
+                      type="submit"
+                      class="btn btn-warning form-contro"
+                      id="btn_update_site"
+                      [disabled]="btn_state_provider"
+                      (click)="cancel_provider()"
+                    >
+                      Annuler
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div class="form-group mx-sm-3 mb-2">
-                <button
-                  type="submit"
-                  class="btn btn-warning form-contro"
-                  id="btn_update_site"
-                  [disabled]="btn_state_provider"
-                  (click)="cancel_provider()"
-                >
-                  Annuler
-                </button>
-              </div>
-            </div>
+            </form>
           </div>
-        </form>
+        </div>
         <div class="">
           <div class="card">
             <div class="card-body">
@@ -1303,9 +1341,9 @@
                 <thead>
                   <tr>
                     <th
-                    scope="col"
-                    style="display: none; visibility: hidden"
-                  ></th>
+                      scope="col"
+                      style="display: none; visibility: hidden"
+                    ></th>
                     <th scope="col" (click)="sort_provider(key)">
                       # &nbsp;<i class="fa fa-sort"></i>
                     </th>
@@ -1319,20 +1357,21 @@
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
-                <tbody
-                >
+                <tbody>
                   <tr
-                  *ngFor="
-                    let prov of providerList
-                      | orderBy: key:reverse
-                      | paginate: { itemsPerPage: 5, currentPage: p_provider };
+                    *ngFor="
+                      let prov of providerList
+                        | orderBy: key:reverse
+                        | paginate
+                          : { itemsPerPage: 5, currentPage: p_provider };
                       let i = index
-                  "
-                  (click)="ClickedRowProvider(prov)">
-                  <th scope="row" style="display: none; visibility: hidden">
-                    {{ prov.oid }}
-                  </th>
-                  <th scope="row">{{ i }}</th>
+                    "
+                    (click)="ClickedRowProvider(prov)"
+                  >
+                    <th scope="row" style="display: none; visibility: hidden">
+                      {{ prov.oid }}
+                    </th>
+                    <th scope="row">{{ i }}</th>
                     <td>{{ prov.code }}</td>
                     <td>{{ prov.name }}</td>
                     <td>{{ prov.company }}</td>
@@ -1390,76 +1429,80 @@
         </button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="coastcenter_form">
-          <div class="form-row">
-            <div class="form-group mx-sm-3 mb-2">
-              <label for="site_code" class="">Code</label>
-              <input
-                type="texte"
-                class="form-control"
-                id="site_code"
-                name="site_code"
-                formControlName="code"
-                [(ngModel)]="coastcenter.code"
-                (ngModelChange)="coastcenter_change_input()"
-                required
-              />
-              <input
-              type="hidden"
-              class="form-control"
-              formControlName="oid"
-              required
-            />
-              <span
-                *ngIf="code_coastcenter.invalid && code_coastcenter.touched"
-                style="color: red"
-                >champ obligatoire</span
-              >
-            </div>
-            <div class="form-group mx-sm-3 mb-2">
-              <label for="site_name" class="">Nom</label>
-              <input
-                type="texte"
-                class="form-control"
-                id="site_name"
-                name="site_name"
-                formControlName="name"
-                [(ngModel)]="coastcenter.name"
-                (ngModelChange)="coastcenter_change_input()"
-                required
-              />
-              <span
-                *ngIf="name_coastcenter.invalid && name_coastcenter.touched"
-                style="color: red"
-                >champ obligatoire</span
-              >
-            </div>
-            <div class="row" id="div_btn">
-              <div class="form-group mx-sm-3 mb-2">
-                <button
-                  type="submit"
-                  class="btn btn-primary form-contro"
-                  id="btn_add_site"
-                  [disabled]="btn_state_coastC"
-                  (click)="add_coastcenter()"
-                >
-                  Ajouter
-                </button>
+        <div class="card">
+          <div class="card-body">
+            <form [formGroup]="coastcenter_form">
+              <div class="form-row">
+                <div class="form-group mx-sm-3 mb-2">
+                  <label for="site_code" class="">Code</label>
+                  <input
+                    type="texte"
+                    class="form-control"
+                    id="site_code"
+                    name="site_code"
+                    formControlName="code"
+                    [(ngModel)]="coastcenter.code"
+                    (ngModelChange)="coastcenter_change_input()"
+                    required
+                  />
+                  <input
+                    type="hidden"
+                    class="form-control"
+                    formControlName="oid"
+                    required
+                  />
+                  <span
+                    *ngIf="code_coastcenter.invalid && code_coastcenter.touched"
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+                <div class="form-group mx-sm-3 mb-2">
+                  <label for="site_name" class="">Nom</label>
+                  <input
+                    type="texte"
+                    class="form-control"
+                    id="site_name"
+                    name="site_name"
+                    formControlName="name"
+                    [(ngModel)]="coastcenter.name"
+                    (ngModelChange)="coastcenter_change_input()"
+                    required
+                  />
+                  <span
+                    *ngIf="name_coastcenter.invalid && name_coastcenter.touched"
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+                <div class="row" id="div_btn">
+                  <div class="form-group mx-sm-3 mb-2">
+                    <button
+                      type="submit"
+                      class="btn btn-primary form-contro"
+                      id="btn_add_site"
+                      [disabled]="btn_state_coastC"
+                      (click)="add_coastcenter()"
+                    >
+                      Ajouter
+                    </button>
+                  </div>
+                  <div class="form-group mx-sm-3 mb-2">
+                    <button
+                      type="button"
+                      class="btn btn-warning form-contro"
+                      id="btn_update_site"
+                      [disabled]="btn_state_coastC"
+                      (click)="cancel_coastcenter()"
+                    >
+                      Annuler
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div class="form-group mx-sm-3 mb-2">
-                <button
-                  type="button"
-                  class="btn btn-warning form-contro"
-                  id="btn_update_site"
-                  [disabled]="btn_state_coastC"
-                  (click)="cancel_coastcenter()"
-                >
-                  Annuler
-                </button>
-              </div>
-            </div>
+            </form>
           </div>
-        </form>
+        </div>
         <div class="">
           <div class="card">
             <div class="card-body">
@@ -1478,9 +1521,9 @@
                 <thead>
                   <tr>
                     <th
-                    scope="col"
-                    style="display: none; visibility: hidden"
-                  ></th>
+                      scope="col"
+                      style="display: none; visibility: hidden"
+                    ></th>
                     <th scope="col" (click)="sort_coastcenter(key)">
                       # &nbsp;<i class="fa fa-sort"></i>
                     </th>
@@ -1489,20 +1532,20 @@
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
-                <tbody
-                >
+                <tbody>
                   <tr
-                  *ngFor="
-                    let cc of coastcenterList
-                      | orderBy: key:reverse
-                      | paginate: { itemsPerPage: 5, currentPage: p_coastC };
+                    *ngFor="
+                      let cc of coastcenterList
+                        | orderBy: key:reverse
+                        | paginate: { itemsPerPage: 5, currentPage: p_coastC };
                       let i = index
-                  "
-                  (click)="ClickedRowCoastcenter(cc)">
-                  <th scope="row" style="display: none; visibility: hidden">
-                    {{ cc.oid }}
-                  </th>
-                  <th scope="row">{{ i }}</th>
+                    "
+                    (click)="ClickedRowCoastcenter(cc)"
+                  >
+                    <th scope="row" style="display: none; visibility: hidden">
+                      {{ cc.oid }}
+                    </th>
+                    <th scope="row">{{ i }}</th>
                     <td>{{ cc.code }}</td>
                     <td>{{ cc.name }}</td>
                     <td>
@@ -1578,11 +1621,11 @@
                       required
                     />
                     <input
-                    type="hidden"
-                    class="form-control"
-                    formControlName="oid"
-                    required
-                  />
+                      type="hidden"
+                      class="form-control"
+                      formControlName="oid"
+                      required
+                    />
                     <span
                       *ngIf="name_product.invalid && name_product.touched"
                       style="color: red"
@@ -1836,11 +1879,11 @@
                         class="btn btn-warning form-contro"
                         id="btn_update_site"
                         [disabled]="
-                        btn_state_product ||
-                        product.location == undefined ||
-                        product.category == undefined
-                      "
-                      (click)="cancel_product()"
+                          btn_state_product ||
+                          product.location == undefined ||
+                          product.category == undefined
+                        "
+                        (click)="cancel_product()"
                       >
                         Annuler
                       </button>
@@ -1873,10 +1916,10 @@
                 <thead>
                   <tr>
                     <th
-                    scope="col"
-                    (click)="sort_site(key)"
-                    style="display: none; visibility: hidden"
-                  ></th>
+                      scope="col"
+                      (click)="sort_site(key)"
+                      style="display: none; visibility: hidden"
+                    ></th>
                     <th scope="col" (click)="sort_product(key)">
                       # &nbsp;<i class="fa fa-sort"></i>
                     </th>
@@ -1895,20 +1938,20 @@
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
-                <tbody
-                >
+                <tbody>
                   <tr
-                  *ngFor="
-                    let prod of productList
-                      | orderBy: key:reverse
-                      | paginate: { itemsPerPage: 5, currentPage: p_prod };
+                    *ngFor="
+                      let prod of productList
+                        | orderBy: key:reverse
+                        | paginate: { itemsPerPage: 5, currentPage: p_prod };
                       let i = index
-                  "
-                  (click)="ClickedRowProduct(prod)">
-                  <th scope="row" style="display: none; visibility: hidden">
-                    {{ prod.oid }}
-                  </th>
-                  <th scope="row">{{ i }}</th>
+                    "
+                    (click)="ClickedRowProduct(prod)"
+                  >
+                    <th scope="row" style="display: none; visibility: hidden">
+                      {{ prod.oid }}
+                    </th>
+                    <th scope="row">{{ i }}</th>
                     <td>{{ prod.name }}</td>
                     <td>{{ prod.barrecode }}</td>
                     <td>{{ prod.buyingprice }}</td>
